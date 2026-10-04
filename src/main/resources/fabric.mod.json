@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "barometric",
+	"version": "${version}",
+	"name": "Barometric",
+	"description": "Simplistic Terraria-style weather overhaul and API",
+	"authors": [
+		"Avogodo_ - Artist, Programmer"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/barometric/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"avogodo.barometric.Barometric"
+		],
+		"cardinal-components": [
+			"avogodo.barometric.component.BarometricComponents"
+		]
+	},
+	"mixins": [
+		"barometric.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"cardinal-components": [
+			"barometric:barometric_weather"
+		]
+	}
+}
