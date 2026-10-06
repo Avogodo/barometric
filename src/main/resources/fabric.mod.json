@@ -33,7 +33,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"barometric:barometric_weather"
+			"barometric:barometric_weather",
+			"barometric:wind_speed"
 		]
 	}
 }
