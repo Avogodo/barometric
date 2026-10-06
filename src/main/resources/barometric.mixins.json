@@ -4,7 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "CloudRendererMixin",
-    "MinecraftServerMixin"
+    "MinecraftServerMixin",
+    "ServerWorldMixin"
   ],
   "injectors": {
     "defaultRequire": 1
