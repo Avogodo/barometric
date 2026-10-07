@@ -19,6 +19,6 @@ public class BarometricItems {
         Registry.register(Registries.ITEM, itemKey, item);
         return item;
     }
-    public static void initialize() {
+    public static void init() {
     }
 }

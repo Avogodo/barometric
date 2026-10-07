@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    "IGN",
+    "AII"
+  ],
+  "key": {
+    "C": [
+      "minecraft:comparator"
+    ],
+    "I": [
+      "minecraft:copper_ingot"
+    ],
+    "A": [
+      "minecraft:amethyst_shard"
+    ],
+    "G": [
+      "minecraft:gold_ingot"
+    ],
+    "N": [
+      "minecraft:gold_nugget"
+    ]
+  },
+  "result": {
+    "id": "barometric:weather_radio"
+  }
+}

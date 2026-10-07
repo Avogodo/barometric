@@ -1,9 +1,10 @@
 package avogodo.barometric.weather.events;
 
 import avogodo.barometric.weather.WeatherEvent;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
-public class ThunderWeatherEvent extends WeatherEvent {
+public class ThunderWeatherEvent extends RainWeatherEvent {
     @Override
     public int getPriority() {
         return 2;
@@ -15,18 +16,13 @@ public class ThunderWeatherEvent extends WeatherEvent {
     }
 
     @Override
-    public String getDescriptor() {
-        return "Thunder";
+    public Text getDescriptor() {
+        return Text.literal("Thunder");
     }
 
     @Override
     public boolean activeCondition(World world) {
         return world.isThundering();
-    }
-
-    @Override
-    public float windSpeedMultiplier() {
-        return 1.5f;
     }
 
     @Override
@@ -37,5 +33,10 @@ public class ThunderWeatherEvent extends WeatherEvent {
     @Override
     public float windSpeedMaximum() {
         return 50;
+    }
+
+    @Override
+    public float windSpeedRate() {
+        return 0.05f;
     }
 }

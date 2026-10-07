@@ -2,6 +2,7 @@ package avogodo.barometric.weather.events;
 
 import avogodo.barometric.weather.WeatherEvent;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
@@ -21,24 +22,14 @@ public class EndWeatherEvent extends WeatherEvent {
     }
 
     @Override
-    public String getDescriptor() {
-        return "Still";
+    public Text getDescriptor() {
+        return Text.literal("Still");
     }
 
     @Override
     public boolean activeCondition(World world) {
         Predicate<RegistryKey<DimensionType>> p = d -> d.equals(DimensionTypes.THE_END);
         return world.getDimensionEntry().matches(p);
-    }
-
-    @Override
-    public float windSpeedMultiplier() {
-        return 1;
-    }
-
-    @Override
-    public float windSpeedMinimum() {
-        return 0;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package avogodo.barometric.weather.events;
 
 import avogodo.barometric.weather.WeatherEvent;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 public class RainWeatherEvent extends WeatherEvent {
@@ -15,8 +16,8 @@ public class RainWeatherEvent extends WeatherEvent {
     }
 
     @Override
-    public String getDescriptor() {
-        return "Rainy";
+    public Text getDescriptor() {
+        return Text.literal("Rainy");
     }
 
     @Override
@@ -37,5 +38,10 @@ public class RainWeatherEvent extends WeatherEvent {
     @Override
     public float windSpeedMaximum() {
         return 30;
+    }
+
+    @Override
+    public float windSpeedRate() {
+        return 0.025f;
     }
 }

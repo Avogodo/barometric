@@ -1,16 +1,12 @@
 package avogodo.barometric.mixin;
 
-import avogodo.barometric.component.WindSpeedComponent;
-import avogodo.barometric.util.WindSpeedHandler;
-import net.minecraft.resource.ResourceManager;
+import avogodo.barometric.cca.WindComponent;
+import avogodo.barometric.util.WindHandler;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.profiler.Profiler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.BooleanSupplier;
 
@@ -19,7 +15,8 @@ public class ServerWorldMixin {
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void barometric$modifyCloudTexture(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
 		ServerWorld world = (ServerWorld) (Object) this;
-		WindSpeedComponent component = WindSpeedComponent.get(world);
-		component.setValue(WindSpeedHandler.calculateWindSpeed(component.getValue(), world));
+		WindComponent component = WindComponent.get(world);
+		component.setSpeed(WindHandler.updateWindSpeed(component.getSpeed(), world));
+		component.setDirection(WindHandler.updateWindDirection(component.getDirection(), world));
 	}
 }

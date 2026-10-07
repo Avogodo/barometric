@@ -13,6 +13,5 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class WorldRendererMixin {
 	@Inject(method = "renderSky", at = @At("HEAD"), cancellable = true)
 	private void barometric$skyRenderer(FrameGraphBuilder frameGraphBuilder, Camera camera, GpuBufferSlice fogBuffer, CallbackInfo ci) {
-		ci.cancel();
 	}
 }

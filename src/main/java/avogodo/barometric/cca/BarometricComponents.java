@@ -1,4 +1,4 @@
-package avogodo.barometric.component;
+package avogodo.barometric.cca;
 
 import net.minecraft.util.Identifier;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
@@ -7,11 +7,10 @@ import org.ladysnake.cca.api.v3.world.WorldComponentFactoryRegistry;
 import org.ladysnake.cca.api.v3.world.WorldComponentInitializer;
 
 public final class BarometricComponents implements WorldComponentInitializer {
-    public static final ComponentKey<WindSpeedComponent> WIND_SPEED =
-            ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of("barometric:wind_speed"), WindSpeedComponent.class);
+    public static final ComponentKey<WindComponent> WIND =
+            ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of("barometric:wind"), WindComponent.class);
     @Override
     public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
-        //registry.register(BAROMETRIC_WEATHER, BarometricWeatherComponent::new);
-        registry.register(WIND_SPEED, WindSpeedComponent::new);
+        registry.register(WIND, WindComponent::new);
     }
 }

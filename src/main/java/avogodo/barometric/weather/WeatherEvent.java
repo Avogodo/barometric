@@ -1,5 +1,6 @@
 package avogodo.barometric.weather;
 
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 public abstract class WeatherEvent {
@@ -7,13 +8,32 @@ public abstract class WeatherEvent {
 
     }
     public abstract int getPriority();
-
     public abstract String getIdentifier();
-    public abstract String getDescriptor();
+    public abstract Text getDescriptor();
 
+    /// should return true only when the event is set to be active.
     public abstract boolean activeCondition(World world);
-    public abstract float windSpeedMultiplier();
-    public abstract float windSpeedMinimum();
-    public abstract float windSpeedMaximum();
 
+    /// multiplies any update to the wind speed by this value.
+    public float windSpeedMultiplier() {
+        return 1;
+    }
+
+    /// chance per game tick to update the weather.
+    public float windSpeedRate() {
+        return 0.01f;
+    }
+
+    /// upper and lower bounds for the wind to (roughly) follow during the event.
+    public float windSpeedMinimum() {
+        return 0;
+    }
+    public float windSpeedMaximum() {
+        return -1;
+    }
+
+    /// only under specific use cases where O winds make sense and wind direction can be completely ignored.
+    public boolean omnidirectionalWinds() {
+        return false;
+    }
 }
