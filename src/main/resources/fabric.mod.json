@@ -3,9 +3,9 @@
 	"id": "barometric",
 	"version": "${version}",
 	"name": "Barometric",
-	"description": "Simplistic Terraria-style weather overhaul and API",
+	"description": "terraria-style modular weather overhaul for vanilla+ minecraft servers",
 	"authors": [
-		"Avogodo_ - Artist, Programmer"
+		"Avogodo_"
 	],
 	"contact": {
 		"homepage": "https://modrinth.com/user/Avogodo_",
@@ -29,7 +29,7 @@
 		"barometric.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.19.5",
+		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.21.11",
 		"java": ">=21",
 		"fabric-api": "*"
