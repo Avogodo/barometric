@@ -1,6 +1,5 @@
 package avogodo.barometric.item.custom;
 
-import avogodo.barometric.component.BarometricComponentTypes;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

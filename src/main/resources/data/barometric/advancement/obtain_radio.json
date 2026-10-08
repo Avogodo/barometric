@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "got_radio": {
+      "conditions": {
+        "items": [
+          {
+            "items": "barometric:weather_radio"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:gui/advancements/backgrounds/adventure",
+    "description": "Obtain a Weather Radio.",
+    "icon": {
+      "id": "barometric:weather_radio"
+    },
+    "title": "Radio Silence"
+  },
+  "requirements": [
+    [
+      "got_radio"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

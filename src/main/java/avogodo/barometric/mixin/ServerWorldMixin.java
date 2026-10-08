@@ -13,7 +13,7 @@ import java.util.function.BooleanSupplier;
 @Mixin(ServerWorld.class)
 public class ServerWorldMixin {
 	@Inject(method = "tick", at = @At("HEAD"))
-	private void barometric$modifyCloudTexture(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
+	private void barometric$applyWindComponents(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
 		ServerWorld world = (ServerWorld) (Object) this;
 		WindComponent component = WindComponent.get(world);
 		component.setSpeed(WindHandler.updateWindSpeed(component.getSpeed(), world));

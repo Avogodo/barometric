@@ -3,6 +3,7 @@
   "package": "avogodo.barometric.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin",
     "ServerWorldMixin"
   ],
   "injectors": {
@@ -12,5 +13,6 @@
     "requireAnnotations": true
   },
   "client": [
-	]
+    "CloudRendererMixin"
+  ]
 }

@@ -1,10 +1,10 @@
 package avogodo.barometric;
 
-import avogodo.barometric.component.BarometricComponentTypes;
 import avogodo.barometric.item.BarometricItems;
 import avogodo.barometric.util.*;
 import avogodo.barometric.weather.events.*;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.gui.hud.bar.Bar;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,10 +18,11 @@ public class Barometric implements ModInitializer {
 	public static final String MOD_ID = "barometric";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	public static float TEST = 90;
+
 	@Override
 	public void onInitialize() {
 		BarometricItems.init();
-		BarometricComponentTypes.init();
 		WeatherEventHandler.registerOverrides(List.of(new RainWeatherEvent(), new ThunderWeatherEvent(), new NetherWeatherEvent(), new EndWeatherEvent(), new LabyrinthWeatherEvent()));
 	}
 

@@ -2,7 +2,10 @@ package avogodo.barometric.item;
 
 import avogodo.barometric.Barometric;
 import avogodo.barometric.item.custom.WeatherRadioItem;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -20,5 +23,7 @@ public class BarometricItems {
         return item;
     }
     public static void init() {
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS)
+                .register((itemGroup) -> itemGroup.addAfter(Items.SPYGLASS, BarometricItems.WEATHER_RADIO));
     }
 }

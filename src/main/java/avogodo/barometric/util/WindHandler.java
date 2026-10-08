@@ -12,9 +12,9 @@ public class WindHandler {
         float multiplier = e ? event.windSpeedMultiplier() : 1;
         float r = e ? event.windSpeedRate() : 0.01f;
         float a = Math.random() < r ? (float) (Math.random() - 0.5) * multiplier : 0;
-        a = e && currentSpeed <= event.windSpeedMinimum() ? a+event.windSpeedMinimum()*0.5f : a;
-        a = e && currentSpeed >= event.windSpeedMaximum() ? a-event.windSpeedMaximum()*0.5f : a;
-        a = !e && currentSpeed >= 10 ? a-5 : a;
+        a = e && currentSpeed <= event.windSpeedMinimum() ? (float) (a+Math.random()/3) : a;
+        a = e && currentSpeed >= event.windSpeedMaximum() ?(float) (a-Math.random()/3) : a;
+        a = !e && currentSpeed >= 10 ? a-(float) (a+Math.random()) : a;
         return (currentSpeed + a >= 0 ? currentSpeed + a : 0);
     }
 
@@ -34,7 +34,7 @@ public class WindHandler {
         return currentDirection + a >= 0 ? (int) (currentDirection + a) : 0;
     }
 
-    // more incomprehensible math
+    // ...
     public static String getCardinalDirection(int degree, World world) {
         if (WeatherEventHandler.getPrimaryEvent(world) != null && WeatherEventHandler.getPrimaryEvent(world).omnidirectionalWinds()) {
             return "Omnidirectional"; //hm...
@@ -42,11 +42,19 @@ public class WindHandler {
         if (WindHandler.getWindSpeed(world) < 0.5) {
             return ""; //blanks at 0mph
         }
-        double n = degree % 360;
-        n = n < 0 ? n + 360 : n;
-        String[] d = {"N", "E", "S", "W"};
-        int i = (int) Math.floor((n + 45) / 90) % 4;
-        return d[i];
+        if (135<= degree && degree <=225) {
+            return "N";
+        } else
+        if (225< degree && degree <315) {
+            return "E";
+        }
+        if ((315<= degree && degree <=360) || (0<= degree && degree <=45)) {
+            return "S";
+        }
+        if (45< degree && degree <135) {
+            return "W";
+        }
+        return "Err";
     }
 
     /// fetches the current wind speed in the specified world

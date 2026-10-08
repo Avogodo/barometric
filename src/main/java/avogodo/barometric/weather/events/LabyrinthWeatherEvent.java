@@ -56,4 +56,9 @@ public class LabyrinthWeatherEvent extends WeatherEvent {
     public boolean omnidirectionalWinds() {
         return true;
     }
+
+    @Override
+    public boolean cancelWindMovement() {
+        return true;
+    }
 }
