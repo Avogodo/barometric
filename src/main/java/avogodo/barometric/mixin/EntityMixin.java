@@ -21,7 +21,7 @@ public class EntityMixin {
 		WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
 		float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
 		if (speed > 15 && world.isSkyVisible(entity.getBlockPos()) && (event == null || !event.cancelWindMovement())) {
-			entity.addVelocity(-MathHelper.sin(r) / 100, 0, MathHelper.cos(r) / 100);
+			entity.addVelocity(-MathHelper.sin(r) / (100-speed), 0, MathHelper.cos(r) / (100-speed));
 		}
 	}
 }

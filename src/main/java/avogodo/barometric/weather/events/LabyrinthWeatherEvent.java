@@ -28,7 +28,8 @@ public class LabyrinthWeatherEvent extends WeatherEvent {
 
     @Override
     public Text getDescriptor() {
-        return Text.literal(String.valueOf(((float)Math.random()*100)/100)).setStyle(Text.empty().getStyle().withObfuscated(true));
+        //return Text.literal("☽ ").append(Text.literal(String.valueOf(((float)Math.random()*100)/100)).setStyle(Text.empty().getStyle().withObfuscated(true)));
+        return Text.literal("☽ ???");
     }
 
     @Override
@@ -53,8 +54,8 @@ public class LabyrinthWeatherEvent extends WeatherEvent {
     }
 
     @Override
-    public boolean omnidirectionalWinds() {
-        return true;
+    public String windDirectionOverride() {
+        return "Omnidirectional";
     }
 
     @Override

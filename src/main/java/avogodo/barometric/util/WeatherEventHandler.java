@@ -40,7 +40,7 @@ public class WeatherEventHandler {
         if (getPrimaryEvent(world) != null) {
             return getPrimaryEvent(world).getDescriptor();
         }
-        return Text.literal("Clear");
+        return Text.literal("☀ Clear");
     }
 
 }

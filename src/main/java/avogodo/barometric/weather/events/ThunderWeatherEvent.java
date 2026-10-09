@@ -17,7 +17,7 @@ public class ThunderWeatherEvent extends RainWeatherEvent {
 
     @Override
     public Text getDescriptor() {
-        return Text.literal("Thunder");
+        return Text.literal("⛈ Thunder");
     }
 
     @Override

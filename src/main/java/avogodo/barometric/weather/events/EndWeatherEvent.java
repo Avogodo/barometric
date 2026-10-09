@@ -23,7 +23,7 @@ public class EndWeatherEvent extends WeatherEvent {
 
     @Override
     public Text getDescriptor() {
-        return Text.literal("Still");
+        return Text.literal("☄ Still");
     }
 
     @Override

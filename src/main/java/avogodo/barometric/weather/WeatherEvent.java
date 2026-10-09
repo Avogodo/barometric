@@ -32,9 +32,9 @@ public abstract class WeatherEvent {
         return -1;
     }
 
-    /// only under specific use cases where o-winds make sense and wind direction can be completely ignored.
-    public boolean omnidirectionalWinds() {
-        return false;
+    /// only under specific use cases where wind direction can be completely ignored.
+    public String windDirectionOverride() {
+        return null;
     }
 
     /// set to true if you want entities not to be moved by strong winds.

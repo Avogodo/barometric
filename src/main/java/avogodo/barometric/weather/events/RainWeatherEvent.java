@@ -17,7 +17,7 @@ public class RainWeatherEvent extends WeatherEvent {
 
     @Override
     public Text getDescriptor() {
-        return Text.literal("Rainy");
+        return Text.literal("\uD83C\uDF27 Rainy");
     }
 
     @Override

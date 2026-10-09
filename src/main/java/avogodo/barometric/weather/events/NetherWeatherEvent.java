@@ -23,7 +23,7 @@ public class NetherWeatherEvent extends WeatherEvent {
 
     @Override
     public Text getDescriptor() {
-        return Text.literal("Torrid");
+        return Text.literal("\uD83D\uDD25 Torrid");
     }
 
     @Override

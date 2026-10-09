@@ -36,8 +36,9 @@ public class WindHandler {
 
     // ...
     public static String getCardinalDirection(int degree, World world) {
-        if (WeatherEventHandler.getPrimaryEvent(world) != null && WeatherEventHandler.getPrimaryEvent(world).omnidirectionalWinds()) {
-            return "Omnidirectional"; //hm...
+        WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
+        if (event != null && event.windDirectionOverride() != null) {
+            return event.windDirectionOverride(); //hm...
         }
         if (WindHandler.getWindSpeed(world) < 0.5) {
             return ""; //blanks at 0mph
@@ -65,4 +66,4 @@ public class WindHandler {
     public static int getWindDirection(World world) {
         return WindComponent.get(world).getDirection();
     }
-    }
+}
