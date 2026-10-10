@@ -2,6 +2,10 @@ package avogodo.barometric.util;
 
 import avogodo.barometric.cca.WindComponent;
 import avogodo.barometric.weather.WeatherEvent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class WindHandler {
@@ -34,7 +38,17 @@ public class WindHandler {
         return currentDirection + a >= 0 ? (int) (currentDirection + a) : 0;
     }
 
-    // ...
+    public static Vec3d getPushDirection(World world, Entity entity) {
+        float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
+        float speed = WindHandler.getWindSpeed(world);
+        WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
+        if (world.isSkyVisible(entity.getBlockPos()) && WindHandler.getWindSpeed(world) >= 15 && (event == null || !event.cancelWindMovement())) {
+            return new Vec3d(-MathHelper.sin(r) / (100 - speed), 0, MathHelper.cos(r) / (100 - speed));
+        }
+        return new Vec3d(0, 0, 0);
+    }
+
+
     public static String getCardinalDirection(int degree, World world) {
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
         if (event != null && event.windDirectionOverride() != null) {

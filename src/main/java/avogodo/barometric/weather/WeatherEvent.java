@@ -1,6 +1,7 @@
 package avogodo.barometric.weather;
 
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public abstract class WeatherEvent {
@@ -39,4 +40,7 @@ public abstract class WeatherEvent {
 
     /// set to true if you want entities not to be moved by strong winds.
     public boolean cancelWindMovement() {return false;}
+
+    /// rain texture to be used during the event. null values return vanilla's texture
+    public Identifier rainTexture() {return null;}
 }

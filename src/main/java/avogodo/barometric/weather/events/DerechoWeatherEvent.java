@@ -1,48 +1,48 @@
 package avogodo.barometric.weather.events;
 
-import avogodo.barometric.weather.WeatherEvent;
+import avogodo.barometric.util.WindHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class ThunderWeatherEvent extends RainWeatherEvent {
+public class DerechoWeatherEvent extends ThunderWeatherEvent {
     @Override
     public int getPriority() {
-        return 2;
+        return 5;
     }
 
     @Override
     public String getIdentifier() {
-        return "minecraft:thunder";
+        return "barometric:derecho";
     }
 
     @Override
     public Text getDescriptor() {
-        return Text.literal("⛈ Thunder");
+        return Text.literal("⚡ Derecho");
     }
 
     @Override
     public boolean activeCondition(World world) {
-        return world.isThundering();
+        return world.isThundering() && WindHandler.getWindSpeed(world) >= 38;
     }
 
     @Override
     public float windSpeedMinimum() {
-        return 20;
+        return 64;
     }
 
     @Override
     public float windSpeedMaximum() {
-        return 39;
+        return 128;
     }
 
     @Override
     public float windSpeedRate() {
-        return 0.05f;
+        return 0.1f;
     }
 
     @Override
-    public float windSpeedMultiplier() {
-        return 2.5f;
+    public Identifier rainTexture() {
+        return Identifier.of("barometric", "textures/environment/derecho_rain.png");
     }
 }

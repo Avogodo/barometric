@@ -3,9 +3,9 @@ package avogodo.barometric;
 import avogodo.barometric.item.BarometricItems;
 import avogodo.barometric.util.*;
 import avogodo.barometric.weather.events.*;
+import avogodo.barometric.weather.overrides.SnowDescriptorOverride;
+import avogodo.barometric.weather.overrides.SnowstormDescriptorOverride;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.client.gui.hud.bar.Bar;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,8 @@ public class Barometric implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		BarometricItems.init();
-		WeatherEventHandler.registerOverrides(List.of(new RainWeatherEvent(), new ThunderWeatherEvent(), new NetherWeatherEvent(), new EndWeatherEvent(), new LabyrinthWeatherEvent()));
+		WeatherEventHandler.registerEvents(List.of(new RainWeatherEvent(), new ThunderWeatherEvent(), new DerechoWeatherEvent(), new NetherWeatherEvent(), new EndWeatherEvent(), new LabyrinthWeatherEvent()));
+		WeatherEventHandler.registerOverrides(List.of(new SnowDescriptorOverride(), new SnowstormDescriptorOverride()));
 	}
 
 	public static ItemStack getRadio(PlayerEntity player) {

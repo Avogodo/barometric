@@ -27,9 +27,9 @@ public class HudRenderingEntrypoint implements ClientModInitializer {
 			World world = player.getEntityWorld();
 			int h = client.getWindow().getScaledHeight();
 			graphics.drawHorizontalLine(5, 75, h - 24, 0xFFFFFFFF);
-			graphics.drawText(client.textRenderer, WeatherEventHandler.getPrimaryDescriptor(world), 5, h - 35, 0xFFFFFFFF, false);
+			graphics.drawText(client.textRenderer, WeatherEventHandler.getPrimaryDescriptor(world, player.getBlockPos()), 5, h - 35, 0xFFFFFFFF, false);
 			//float speed = Barometric.getRadio(player).getOrDefault(BarometricComponentTypes.FREEDOM_MODE, true) ? WindSpeedHandler.getWindSpeed(world) : WindSpeedHandler.getWindSpeed(world)*1.609344f;
-			graphics.drawText(client.textRenderer, Math.round(WindHandler.getWindSpeed(world)) + "mph " + WindHandler.getCardinalDirection(WindHandler.getWindDirection(world), world) + " | " + world.getBiome(player.getBlockPos()).value().getTemperature() + "°", 5, h - 20, 0xFFFFFFFF, false);
+			graphics.drawText(client.textRenderer, Math.round(WindHandler.getWindSpeed(world)) + "bps " + WindHandler.getCardinalDirection(WindHandler.getWindDirection(world), world) + " | " + world.getBiome(player.getBlockPos()).value().getTemperature() + "°", 5, h - 20, 0xFFFFFFFF, false);
 		}
 	}
 

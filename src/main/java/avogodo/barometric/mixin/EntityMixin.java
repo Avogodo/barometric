@@ -16,12 +16,6 @@ public class EntityMixin {
 	@Inject(method = "tick", at = @At("HEAD"))
 	private void barometric$pushEntitiesWithWind(CallbackInfo ci) {
 		Entity entity = (Entity) (Object) this;
-		World world = entity.getEntityWorld();
-		float speed = WindHandler.getWindSpeed(world);
-		WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
-		float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
-		if (speed > 15 && world.isSkyVisible(entity.getBlockPos()) && (event == null || !event.cancelWindMovement())) {
-			entity.addVelocity(-MathHelper.sin(r) / (100-speed), 0, MathHelper.cos(r) / (100-speed));
-		}
+		entity.addVelocity(WindHandler.getPushDirection(entity.getEntityWorld(), entity));
 	}
 }

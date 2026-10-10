@@ -34,7 +34,7 @@ public class NetherWeatherEvent extends WeatherEvent {
 
     @Override
     public float windSpeedMaximum() {
-        return 10;
+        return 16;
     }
 }
 
