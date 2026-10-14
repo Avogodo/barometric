@@ -36,5 +36,10 @@ public class NetherWeatherEvent extends WeatherEvent {
     public float windSpeedMaximum() {
         return 16;
     }
+
+    @Override
+    public boolean verticalWind() {
+        return true;
+    }
 }
 

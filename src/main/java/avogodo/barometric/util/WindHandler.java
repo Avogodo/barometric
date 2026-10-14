@@ -22,7 +22,7 @@ public class WindHandler {
         return (currentSpeed + a >= 0 ? currentSpeed + a : 0);
     }
 
-    // the same thing except it windspeed bounds are replaced by 0 < x < 360
+    // the same thing except windspeed bounds are replaced by 0 < x < 360
     public static int updateWindDirection(int currentDirection, World world) {
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
         boolean e = event != null;
@@ -39,10 +39,13 @@ public class WindHandler {
     }
 
     public static Vec3d getPushDirection(World world, Entity entity) {
-        float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
         float speed = WindHandler.getWindSpeed(world);
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
-        if (world.isSkyVisible(entity.getBlockPos()) && WindHandler.getWindSpeed(world) >= 15 && (event == null || !event.cancelWindMovement())) {
+        float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
+        if (event != null && event.verticalWind() && !event.cancelWindMovement() && WindHandler.getWindSpeed(world) >= 10) {
+            return new Vec3d(0, r / (100 - speed), 0);
+        }
+        if (world.isSkyVisible(entity.getBlockPos()) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
             return new Vec3d(-MathHelper.sin(r) / (100 - speed), 0, MathHelper.cos(r) / (100 - speed));
         }
         return new Vec3d(0, 0, 0);
@@ -52,7 +55,7 @@ public class WindHandler {
     public static String getCardinalDirection(int degree, World world) {
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
         if (event != null && event.windDirectionOverride() != null) {
-            return event.windDirectionOverride(); //hm...
+            return event.windDirectionOverride();
         }
         if (WindHandler.getWindSpeed(world) < 0.5) {
             return ""; //blanks at 0mph

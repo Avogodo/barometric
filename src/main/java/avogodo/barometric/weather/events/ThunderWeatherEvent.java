@@ -33,7 +33,7 @@ public class ThunderWeatherEvent extends RainWeatherEvent {
 
     @Override
     public float windSpeedMaximum() {
-        return 39;
+        return 51;
     }
 
     @Override

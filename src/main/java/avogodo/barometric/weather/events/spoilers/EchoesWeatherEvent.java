@@ -1,19 +1,20 @@
-package avogodo.barometric.weather.events;
+package avogodo.barometric.weather.events.spoilers;
 
 import avogodo.barometric.weather.WeatherEvent;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.dimension.DimensionTypes;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
-public class LabyrinthWeatherEvent extends WeatherEvent {
+public class EchoesWeatherEvent extends WeatherEvent {
 
     // hi apostasy code reviewer! it's come to my attention (asher leaked it) that big l will be taking place during the mist event, in a custom dimension.
-    // thus, i've added a lore-inaccurate weather event that activates in any dimension besides the vanilla three (including the big l dimension by fallback)
-    // i don't have access to the code, dimension id, nor do i know how to enter the dimension. i'm fully under the assumption that this'll even work.
+    // thus, i've added a lore-inaccurate weather event that corresponds to the dimension id (which i assume to be perpetuity:the_echoes from /execute in)
+    // i don't have access to the code, nor have i entered the dimension, for my sake and the devs'. i'm fully under the assumption that this'll even work.
     // please don't freak out.
 
     @Override
@@ -23,18 +24,17 @@ public class LabyrinthWeatherEvent extends WeatherEvent {
 
     @Override
     public String getIdentifier() {
-        return "apostasy:labyrinth";
+        return "perpetuity:the_echoes";
     }
 
     @Override
     public Text getDescriptor() {
-        //return Text.literal("☽ ").append(Text.literal(String.valueOf(((float)Math.random()*100)/100)).setStyle(Text.empty().getStyle().withObfuscated(true)));
         return Text.literal("☽ ???");
     }
 
     @Override
     public boolean activeCondition(World world) {
-        Predicate<RegistryKey<DimensionType>> p = d -> !d.equals(DimensionTypes.OVERWORLD) && !d.equals(DimensionTypes.THE_NETHER) && !d.equals(DimensionTypes.THE_END);
+        Predicate<RegistryKey<DimensionType>> p = d -> Objects.equals(d.getValue(), Identifier.of("perpetuity", "the_echoes"));
         return world.getDimensionEntry().matches(p);
     }
 

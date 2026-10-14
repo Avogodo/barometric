@@ -23,12 +23,12 @@ public class DerechoWeatherEvent extends ThunderWeatherEvent {
 
     @Override
     public boolean activeCondition(World world) {
-        return world.isThundering() && WindHandler.getWindSpeed(world) >= 38;
+        return world.isThundering() && WindHandler.getWindSpeed(world) >= 50;
     }
 
     @Override
     public float windSpeedMinimum() {
-        return 64;
+        return 72;
     }
 
     @Override

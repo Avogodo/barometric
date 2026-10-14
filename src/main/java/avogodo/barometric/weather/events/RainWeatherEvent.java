@@ -32,7 +32,7 @@ public class RainWeatherEvent extends WeatherEvent {
 
     @Override
     public float windSpeedMinimum() {
-        return 10;
+        return 5;
     }
 
     @Override
