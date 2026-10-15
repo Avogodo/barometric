@@ -33,7 +33,7 @@ public class DerechoWeatherEvent extends ThunderWeatherEvent {
 
     @Override
     public float windSpeedMaximum() {
-        return 128;
+        return 85;
     }
 
     @Override

@@ -38,6 +38,16 @@ public class WindHandler {
         return currentDirection + a >= 0 ? (int) (currentDirection + a) : 0;
     }
 
+    public static boolean isUnderBlock(Entity entity) {
+        World world = entity.getEntityWorld();
+        for (int i = 0; i <= world.getHeight(); i++) {
+            if (world.getBlockState(entity.getBlockPos().add(0, i, 0)).isFullCube(world, entity.getBlockPos())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Vec3d getPushDirection(World world, Entity entity) {
         float speed = WindHandler.getWindSpeed(world);
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
@@ -45,7 +55,7 @@ public class WindHandler {
         if (event != null && event.verticalWind() && !event.cancelWindMovement() && WindHandler.getWindSpeed(world) >= 10) {
             return new Vec3d(0, r / (100 - speed), 0);
         }
-        if (world.isSkyVisible(entity.getBlockPos()) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
+        if (!isUnderBlock(entity) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
             return new Vec3d(-MathHelper.sin(r) / (100 - speed), 0, MathHelper.cos(r) / (100 - speed));
         }
         return new Vec3d(0, 0, 0);
