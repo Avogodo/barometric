@@ -1,6 +1,7 @@
 package avogodo.barometric.util;
 
 import avogodo.barometric.cca.WindComponent;
+import avogodo.barometric.data.BarometricTags;
 import avogodo.barometric.weather.WeatherEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +42,7 @@ public class WindHandler {
     public static boolean isUnderBlock(Entity entity) {
         World world = entity.getEntityWorld();
         for (int i = 0; i <= world.getHeight(); i++) {
-            if (world.getBlockState(entity.getBlockPos().add(0, i, 0)).isFullCube(world, entity.getBlockPos())) {
+            if (world.getBlockState(entity.getBlockPos().add(0, i, 0)).isSolidBlock(world, entity.getBlockPos())) {
                 return true;
             }
         }
@@ -52,8 +53,11 @@ public class WindHandler {
         float speed = WindHandler.getWindSpeed(world);
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
         float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
-        if (event != null && event.verticalWind() && !event.cancelWindMovement() && WindHandler.getWindSpeed(world) >= 10) {
-            return new Vec3d(0, r / (100 - speed), 0);
+        if (entity.getType().isIn(BarometricTags.WIND_IMMUE_ENTITIES)) {
+            return new Vec3d(0, 0, 0);
+        }
+        if (event != null && event.verticalWind() && !event.cancelWindMovement() && WindHandler.getWindSpeed(world) >= 16) {
+            return new Vec3d(0, r / (175 - (speed)), 0);
         }
         if (!isUnderBlock(entity) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
             return new Vec3d(-MathHelper.sin(r) / (100 - speed), 0, MathHelper.cos(r) / (100 - speed));

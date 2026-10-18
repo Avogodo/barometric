@@ -41,5 +41,10 @@ public class NetherWeatherEvent extends WeatherEvent {
     public boolean verticalWind() {
         return true;
     }
+
+    @Override
+    public String windDirectionOverride() {
+        return "Upward";
+    }
 }
 
