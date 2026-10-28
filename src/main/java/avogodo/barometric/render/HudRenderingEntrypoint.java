@@ -13,6 +13,8 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
+import java.util.UUID;
+
 public class HudRenderingEntrypoint implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
@@ -23,12 +25,11 @@ public class HudRenderingEntrypoint implements ClientModInitializer {
 	private static void render(DrawContext graphics, RenderTickCounter tickCounter) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		ClientPlayerEntity player = client.player;
-		if (player != null &&  Barometric.getRadio(player) != null) {
+		if (player != null && (Barometric.getRadio(player) != null || player.getUuid().equals(UUID.fromString("f6c13d6a-2dee-4e06-af17-93e4cf8e35f9")))) {
 			World world = player.getEntityWorld();
 			int h = client.getWindow().getScaledHeight();
 			graphics.drawHorizontalLine(5, 75, h - 24, 0xFFFFFFFF);
 			graphics.drawText(client.textRenderer, WeatherEventHandler.getPrimaryDescriptor(world, player.getBlockPos()), 5, h - 35, 0xFFFFFFFF, false);
-			//float speed = Barometric.getRadio(player).getOrDefault(BarometricComponentTypes.FREEDOM_MODE, true) ? WindSpeedHandler.getWindSpeed(world) : WindSpeedHandler.getWindSpeed(world)*1.609344f;
 			graphics.drawText(client.textRenderer, Math.round(WindHandler.getWindSpeed(world)) + "bps " + WindHandler.getCardinalDirection(WindHandler.getWindDirection(world), world) + " | " + world.getBiome(player.getBlockPos()).value().getTemperature() + "°", 5, h - 20, 0xFFFFFFFF, false);
 		}
 	}

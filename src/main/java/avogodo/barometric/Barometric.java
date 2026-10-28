@@ -4,11 +4,8 @@ import avogodo.barometric.command.BarometricCommand;
 import avogodo.barometric.item.BarometricItems;
 import avogodo.barometric.util.*;
 import avogodo.barometric.weather.events.*;
-import avogodo.barometric.weather.events.spoilers.EchoesWeatherEvent;
-import avogodo.barometric.weather.events.spoilers.MemoryWeatherEvent;
-import avogodo.barometric.weather.events.spoilers.RemainsWeatherEvent;
-import avogodo.barometric.weather.overrides.SnowDescriptorOverride;
-import avogodo.barometric.weather.overrides.SnowstormDescriptorOverride;
+import avogodo.barometric.weather.events.spoilers.*;
+import avogodo.barometric.weather.overrides.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,13 +20,11 @@ public class Barometric implements ModInitializer {
 	public static final String MOD_ID = "barometric";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static float TEST = 90;
-
 	@Override
 	public void onInitialize() {
 		BarometricItems.init();
 		WeatherEventHandler.registerEvents(List.of(new RainWeatherEvent(), new ThunderWeatherEvent(), new DerechoWeatherEvent(), new NetherWeatherEvent(), new EndWeatherEvent(), new EchoesWeatherEvent(), new MemoryWeatherEvent(), new RemainsWeatherEvent()));
-		WeatherEventHandler.registerOverrides(List.of(new SnowDescriptorOverride(), new SnowstormDescriptorOverride()));
+		WeatherEventHandler.registerOverrides(List.of(new SnowDescriptorOverride(), new SnowstormDescriptorOverride(), new HumidDescriptorOverride()));
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, registrationEnvironment) -> BarometricCommand.register(dispatcher));
 	}
 

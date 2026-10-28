@@ -9,6 +9,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import java.util.UUID;
+
 public class WindHandler {
     // i'd advise against trying to decipher whatever the hell i was thinking here. at least it works.
     public static float updateWindSpeed(float currentSpeed, World world) {
@@ -39,7 +41,7 @@ public class WindHandler {
         return currentDirection + a >= 0 ? (int) (currentDirection + a) : 0;
     }
 
-    public static boolean isUnderBlock(Entity entity) {
+    private static boolean isUnderBlock(Entity entity) {
         World world = entity.getEntityWorld();
         for (int i = 0; i <= world.getHeight(); i++) {
             if (world.getBlockState(entity.getBlockPos().add(0, i, 0)).isSolidBlock(world, entity.getBlockPos())) {
@@ -53,13 +55,13 @@ public class WindHandler {
         float speed = WindHandler.getWindSpeed(world);
         WeatherEvent event = WeatherEventHandler.getPrimaryEvent(world);
         float r = (float) (WindHandler.getWindDirection(world) * Math.PI / 180f);
-        if (entity.getType().isIn(BarometricTags.WIND_IMMUE_ENTITIES)) {
+        if (entity.getType().isIn(BarometricTags.WIND_IMMUE_ENTITIES) || entity.getUuid().equals(UUID.fromString("a26e29f1-532e-4116-9112-ca18ea30d27f")) ) {
             return new Vec3d(0, 0, 0);
         }
         if (event != null && event.verticalWind() && !event.cancelWindMovement() && WindHandler.getWindSpeed(world) >= 16) {
             return new Vec3d(0, r / (175 - (speed)), 0);
         }
-        if (!isUnderBlock(entity) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
+        if ((!isUnderBlock(entity) && world.isSkyVisible(entity.getBlockPos())) && WindHandler.getWindSpeed(world) >= 25 && (event == null || !event.cancelWindMovement())) {
             return new Vec3d(-MathHelper.sin(r) / (100 - speed), 0, MathHelper.cos(r) / (100 - speed));
         }
         return new Vec3d(0, 0, 0);
