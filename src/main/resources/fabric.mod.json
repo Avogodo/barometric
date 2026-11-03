@@ -36,7 +36,8 @@
 	},
 	"custom": {
 		"cardinal-components": [
-			"barometric:wind"
+			"barometric:wind",
+			"barometric:alert"
 		]
 	}
 }

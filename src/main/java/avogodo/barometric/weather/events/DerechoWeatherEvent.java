@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 public class DerechoWeatherEvent extends ThunderWeatherEvent {
     @Override
     public int getPriority() {
-        return 5;
+        return 10;
     }
 
     @Override

@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class NetherWeatherEvent extends WeatherEvent {
     @Override
     public int getPriority() {
-        return 4;
+        return 8;
     }
 
     @Override

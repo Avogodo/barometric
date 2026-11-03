@@ -9,6 +9,9 @@ import org.ladysnake.cca.api.v3.world.WorldComponentInitializer;
 public final class BarometricComponents implements WorldComponentInitializer {
     public static final ComponentKey<WindComponent> WIND =
             ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of("barometric:wind"), WindComponent.class);
+    public static final ComponentKey<AlertComponent> ALERT =
+            ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of("barometric:alert"), AlertComponent.class);
+
     @Override
     public void registerWorldComponentFactories(WorldComponentFactoryRegistry registry) {
         registry.register(WIND, WindComponent::new);

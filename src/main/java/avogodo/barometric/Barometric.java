@@ -3,6 +3,7 @@ package avogodo.barometric;
 import avogodo.barometric.command.BarometricCommand;
 import avogodo.barometric.item.BarometricItems;
 import avogodo.barometric.util.*;
+import avogodo.barometric.weather.alerts.DerechoAlert;
 import avogodo.barometric.weather.events.*;
 import avogodo.barometric.weather.events.spoilers.*;
 import avogodo.barometric.weather.overrides.*;
@@ -25,7 +26,8 @@ public class Barometric implements ModInitializer {
 		BarometricItems.init();
 		WeatherEventHandler.registerEvents(List.of(new RainWeatherEvent(), new ThunderWeatherEvent(), new DerechoWeatherEvent(), new NetherWeatherEvent(), new EndWeatherEvent(), new EchoesWeatherEvent(), new MemoryWeatherEvent(), new RemainsWeatherEvent()));
 		WeatherEventHandler.registerOverrides(List.of(new SnowDescriptorOverride(), new SnowstormDescriptorOverride(), new HumidDescriptorOverride()));
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, registrationEnvironment) -> BarometricCommand.register(dispatcher));
+		EmergencyAlertHandler.registerAlert(new DerechoAlert());
+		//CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, registrationEnvironment) -> BarometricCommand.register(dispatcher));
 	}
 
 	public static ItemStack getRadio(PlayerEntity player) {
